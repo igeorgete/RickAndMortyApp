@@ -25,7 +25,7 @@ fun DetailProperty(
             .fillMaxWidth()
             .padding(vertical = 10.dp, horizontal = 4.dp),
         elevation = 3.dp,
-        backgroundColor = Color(0xff160440)
+        backgroundColor = Color(0xFF02AFC5)
     ) {
         Row(modifier = Modifier.padding(8.dp)) {
             Icon(
