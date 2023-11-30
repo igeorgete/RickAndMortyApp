@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RickAndMortyAppCompose</string>
+
+    // HomeScreen
+    <string name="home_title">Characters</string>
+    <string name="previous_button">Previous</string>
+    <string name="next_button">Next</string>
+
+    // DetailsScreen
+    <string name="first_location">Location</string>
+    <string name="last_location">Last known location:</string>
+    <string name="specie">Specie:</string>
+    <string name="status">Status:</string>
+    <string name="gender">Gender:</string>
+</resources>
