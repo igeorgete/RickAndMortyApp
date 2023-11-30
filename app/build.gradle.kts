@@ -108,4 +108,6 @@ dependencies {
 //    implementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1")
 
+    implementation("io.coil-kt:coil-compose:1.3.0")
+
 }

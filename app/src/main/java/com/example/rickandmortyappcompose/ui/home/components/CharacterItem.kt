@@ -4,21 +4,16 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -35,39 +30,32 @@ fun CharacterItem(
     item: Characters,
     onItemClicked: (Int) -> Unit
 ) {
-
-    Row(
+    Column(
         modifier = modifier
             .clickable { onItemClicked(item.id) }
-            .padding(start = 6.dp, top = 12.dp, bottom = 12.dp)
     ) {
-        CharacterImageContainer(modifier = Modifier.size(64.dp)) {
+        CharacterImageContainer {
             CharacterImage(item)
         }
-        Spacer(Modifier.width(20.dp))
-        Column(
+
+        Text(
+            text = item.name,
+            style = MaterialTheme.typography.subtitle2,
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.CenterVertically)
-        ) {
-            Text(
-                text = item.name,
-                style = MaterialTheme.typography.h6
-            )
-            CompositionLocalProvider {
-                Text(
-                    text = item.specie,
-                    style = MaterialTheme.typography.caption
-                )
-            }
-        }
-        Divider(modifier = Modifier.padding(top = 10.dp))
+                .wrapContentWidth(Alignment.CenterHorizontally)
+        )
     }
 }
 
 @Composable
 fun CharacterImage(item: Characters) {
-    Box {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+            .aspectRatio(1f)
+    ) {
         val painter = rememberAsyncImagePainter(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(item.image)
@@ -78,18 +66,20 @@ fun CharacterImage(item: Characters) {
             painter = painter,
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
         )
     }
 }
 
-// This function may be private
 @Composable
 fun CharacterImageContainer(
-    modifier: Modifier,
     content: @Composable () -> Unit
 ) {
-    Surface(modifier.aspectRatio(1f), RoundedCornerShape(4.dp)) {
+    Surface(
+        modifier = Modifier.aspectRatio(1f),
+        shape = RoundedCornerShape(4.dp)
+    ) {
         content()
     }
 }
